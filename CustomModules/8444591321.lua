@@ -12,7 +12,7 @@ shared.CustomSaveVape = 6872274481
 if isfile("CustomModules/6872274481.lua") then
     loadstring(readfile("CustomModules/6872274481.lua"))()
 else
-    local publicrepo = vapeGithubRequest("6872274481.lua")
+    local publicrepo = vapeGithubRequest("CustomModules/6872274481.lua")
     if publicrepo then
         loadstring(publicrepo)()
     end
