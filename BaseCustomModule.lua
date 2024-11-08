@@ -6,7 +6,7 @@ local lplr = players.LocalPlayer
 local workspace = game:GetService("Workspace")
 local lighting = game:GetService("Lighting")
 local cam = workspace.CurrentCamera
-local targetinfo = shared.VapeTargetInfo
+local targetinfo = shared.YukileNekoTargetInfo
 local uis = game:GetService("UserInputService")
 local localmouse = lplr:GetMouse()
 local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or getgenv().request or request
@@ -72,7 +72,7 @@ local function getcustomassetfunc(path)
 			textlabel:Remove()
 		end)
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..path:gsub("vape/assets", "assets"),
+			Url = "https://raw.githubusercontent.com/YukileNeko/Vape/main/"..path:gsub("vape/assets", "assets"),
 			Method = "GET"
 		})
 		writefile(path, req.Body)
@@ -177,5 +177,6 @@ local function findTouchInterest(tool)
 			return v
 		end
 	end
-	return nil
 end
+
+return {}
