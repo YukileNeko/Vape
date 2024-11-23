@@ -15,7 +15,6 @@ local isfile = isfile or function(file)
 	local suc, res = pcall(function() return readfile(file) end)
 	return suc and res ~= nil
 end
-local getidentity = syn and syn.get_thread_identity or get_thread_identity or getidentity or getthreadidentity or function() return 0 end
 local vapeAssetTable = {
 	["vape/assets/AddItem.png"] = "rbxassetid://13350763121",
 	["vape/assets/AddRemoveIcon1.png"] = "rbxassetid://13350764147",
@@ -85,10 +84,9 @@ local vapeAssetTable = {
 	["vape/assets/VapeLogo4.png"] = "rbxassetid://13350877564"
 }
 if inputService:GetPlatform() ~= Enum.Platform.Windows then
-	--mobile exploit fix
+	-- mobile exploit fix
 	getgenv().getsynasset = nil
 	getgenv().getcustomasset = nil
-	-- why is this needed
 	getsynasset = nil
 	getcustomasset = nil
 end
@@ -107,7 +105,7 @@ local function displayErrorPopup(text, funclist)
 	if funclist then
 		funcs = {}
 		local num = 0
-		for i,v in pairs(funclist) do
+		for i, v in pairs(funclist) do
 			num = num + 1
 			table.insert(funcs, {
 				Text = i,
@@ -124,12 +122,12 @@ local function displayErrorPopup(text, funclist)
 		Callback = function()
 			prompt:_close()
 		end,
-		 Primary = true
+		Primary = true
 	}})
 	prompt:setParent(gui)
-	prompt:setErrorTitle("Vape")
 	prompt:updateText(text)
 end
+
 
 
 local function vapeGithubRequest(scripturl)
