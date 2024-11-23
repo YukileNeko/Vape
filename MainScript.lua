@@ -15,7 +15,6 @@ local isfile = isfile or function(file)
 	local suc, res = pcall(function() return readfile(file) end)
 	return suc and res ~= nil
 end
-local setidentity = syn and syn.set_thread_identity or set_thread_identity or setidentity or setthreadidentity or function() end
 local getidentity = syn and syn.get_thread_identity or get_thread_identity or getidentity or getthreadidentity or function() return 0 end
 local vapeAssetTable = {
 	["vape/assets/AddItem.png"] = "rbxassetid://13350763121",
@@ -99,8 +98,6 @@ local queueonteleport = syn and syn.queue_on_teleport or queue_on_teleport or fu
 local delfile = delfile or function(file) writefile(file, "") end
 
 local function displayErrorPopup(text, funclist)
-	local oldidentity = getidentity()
-	setidentity(8)
 	local ErrorPrompt = getrenv().require(game:GetService("CoreGui").RobloxGui.Modules.ErrorPrompt)
 	local prompt = ErrorPrompt.new("Default")
 	prompt._hideErrorCode = true
@@ -127,12 +124,13 @@ local function displayErrorPopup(text, funclist)
 		Callback = function()
 			prompt:_close()
 		end,
-		Primary = true
-	}}, 'Default')
+		 Primary = true
+	}})
 	prompt:setParent(gui)
-	prompt:_open(text)
-	setidentity(oldidentity)
+	prompt:setErrorTitle("Vape")
+	prompt:updateText(text)
 end
+
 
 local function vapeGithubRequest(scripturl)
 	if not isfile("vape/"..scripturl) then
